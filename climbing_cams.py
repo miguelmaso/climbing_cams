@@ -149,7 +149,7 @@ def bar_chart(rack, ax=None, ylabel='[{number}]'):
     maximums = [cam.max for cam in rack]
     ranges = [maximum - minimum for maximum, minimum in zip(maximums, minimums)]
     colors = [cam.color for cam in rack]
-    ax.barh(labels, width=ranges, left=minimums, height=1, color=colors)
+    ax.barh(labels, width=ranges, left=minimums, height=.8, color=colors, alpha=0.7)
 
 def plot_ranges(racks_list, smart_ylabels=False):
     sizes = [len(rack) for rack in racks_list]

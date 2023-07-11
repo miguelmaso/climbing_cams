@@ -6,11 +6,11 @@ import matplotlib.pyplot as plt
 
 data = cams.load_data()
 families_specifications = [
+    {'brand':'Alien',        'name':'X'},
     {'brand':'Metolius',     'name':'UL'},
     {'brand':'BD',           'name':'UL'},
     {'brand':'BD',           'name':'C4'},
     {'brand':'Totem',        'name':'TotemCam'},
-    {'brand':'Lacd',         'name':'Twin'},
     {'brand':'DMM',          'name':'Dragon'},
     {'brand':'Wild Country', 'name':'Friend'},
     {'brand':'Rock Empire',  'name':'Axel'}
