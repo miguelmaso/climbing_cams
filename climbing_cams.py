@@ -1,11 +1,17 @@
 import os
 import csv
+import enum
+import matplotlib as mpl
 import matplotlib.pyplot as plt
 
 class Units:
-    length_converter = 1
-    weight_converter = 1
-    strength_converter = 1
+    class System(enum.Enum):
+        INTERNATIONAL = 1
+        IMPERIAL = 2
+
+    length_factor = 1
+    weight_factor = 1
+    strength_factor = 1
     range = min = max = 'mm'
     weight = 'g'
     strength = 'kN'
@@ -13,24 +19,23 @@ class Units:
     specific_weight = weight + '/' + range
 
     @classmethod
-    def set_si(cls):
-        cls.length_converter = 1
-        cls.weight_converter = 1
-        cls.range = cls.min = cls.max = 'mm'
-        cls.weight = 'g'
-        cls.strength = 'kN'
-        cls.expansion_rate = ''
-        cls.specific_weight = cls.weight + '/' + cls.range
-
-    @classmethod
-    def set_imperial(cls):
-        cls.length_converter = 0.0393701
-        cls.weight_converter = 0.00220462
-        cls.range = cls.min = cls.max = 'in'
-        cls.weight = 'lb'
-        cls.strength = 'kN'
-        cls.expansion_rate = ''
-        cls.specific_weight = cls.weight + '/' + cls.range
+    def set_system(cls, system):
+        if system == cls.System.INTERNATIONAL:
+            cls.length_factor = 1
+            cls.weight_factor = 1
+            cls.range = cls.min = cls.max = 'mm'
+            cls.weight = 'g'
+            cls.strength = 'kN'
+            cls.expansion_rate = ''
+            cls.specific_weight = cls.weight + '/' + cls.range
+        elif system == cls.System.IMPERIAL:
+            cls.length_factor = 0.0393701
+            cls.weight_factor = 0.00220462
+            cls.range = cls.min = cls.max = 'in'
+            cls.weight = 'lb'
+            cls.strength = 'kN'
+            cls.expansion_rate = ''
+            cls.specific_weight = cls.weight + '/' + cls.range
 
 
 class Cam:
@@ -51,19 +56,19 @@ class Cam:
 
     @property
     def min(self):
-        return self._min * Units.length_converter
+        return self._min * Units.length_factor
 
     @property
     def max(self):
-        return self._max * Units.length_converter
+        return self._max * Units.length_factor
 
     @property
     def weight(self):
-        return self._weight * Units.weight_converter
+        return self._weight * Units.weight_factor
 
     @property
     def strength(self):
-        return self._strength * Units.strength_converter
+        return self._strength * Units.strength_factor
 
     @property
     def expansion_rate(self):
@@ -141,7 +146,7 @@ def select_cams(data, brand="", name="", number="", color="", expansion_range=[]
             rack.append(cam)
     return rack
 
-def bar_chart(rack, ax=None, ylabel='[{number}]'):
+def bar_chart(rack, ax=None, ylabel='[{number}]', number_inside=False):
     if ax is None:
         ax = plt.gca()
     labels = [ylabel.format(brand=cam.brand, name=cam.name, number=cam.number) for cam in rack]
@@ -149,16 +154,32 @@ def bar_chart(rack, ax=None, ylabel='[{number}]'):
     maximums = [cam.max for cam in rack]
     ranges = [maximum - minimum for maximum, minimum in zip(maximums, minimums)]
     colors = [cam.color for cam in rack]
-    ax.barh(labels, width=ranges, left=minimums, height=.8, color=colors, alpha=0.7)
+    bars = ax.barh(labels, width=ranges, left=minimums, height=.8, color=colors, alpha=0.7)
 
-def plot_ranges(racks_list, smart_ylabels=False):
+    for patch in reversed(bars):
+        bb = patch.get_bbox()
+        color = patch.get_facecolor()
+        p_bbox = mpl.patches.FancyBboxPatch((bb.xmin, bb.ymin),
+                            abs(bb.width), abs(bb.height),
+                            boxstyle="round,pad=0,rounding_size=0.5",
+                            ec="none", fc=color,
+                            mutation_aspect=0.2
+                            )
+        patch.remove()
+        ax.add_patch(p_bbox)
+
+    if number_inside:
+        numbers = [cam.number for cam in rack]
+        ax.bar_label(bars, numbers, label_type='center', fontsize=5, weight='bold', color='white')
+
+def plot_ranges(racks_list, smart_ylabels=False, numbers_inside=False):
     sizes = [len(rack) for rack in racks_list]
     fig, axes = plt.subplots(nrows=len(racks_list), sharex=True,
         gridspec_kw={'height_ratios':sizes, 'hspace':0})
     axes = [axes] if len(racks_list) == 1 else axes
 
     for rack, ax in zip(racks_list, axes):
-        bar_chart(rack, ax)
+        bar_chart(rack, ax, number_inside=numbers_inside)
         sep = '\n'
         ax.set_ylabel(f'{rack.name(sep)}')
         ax.spines.right.set_visible(False)
@@ -194,4 +215,3 @@ def scatter_individual(racks_list, xvalue, yvalue):
     axes.set_ylabel(f'{yvalue.replace("_"," ").capitalize()} [{getattr(Units, yvalue)}]')
     fig.tight_layout()
     return fig, axes
-
