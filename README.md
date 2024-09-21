@@ -20,18 +20,18 @@ Several cams are pre-loaded in the database, these are the available brands:
 - LACD Twin
 - Alien X
 
-The figure below shows a typical bar chart for racks comparison. Selection of cams can be done by the user 
+The figure below shows a typical bar chart for rack comparison. Selection of cams can be done by the user.
 
-![Expansion rate bar chart](doc/climbing_cams_bar_chart.png)
+![Expansion range bar chart](doc/climbing_cams_bar_chart.png)
 
-Scatter plots can be done showing the average of a family or plotting individually every cam. Family plots are more compacts and easier to read. Expansion rate and specific weight is an interesting properties and its average values are plotted below. Surprisingly, Wild Countri Friends are extremely light according to this comparison.
+Scatter plots can show the average of a family or plot individually every cam. Family plots are more compacts and easier to read. In the exampe below, specific weight vs expansion rate, which are interesting properties, are compared in a family plot. Surprisingly, Wild Country Friends are extremely light according to this comparison.
 
 ![Expansion rate vs specific weight](doc/expansion_rate_families.png)
 
-For a bette rvisualization, logarithmic scales have been used.
+For a better visualization, logarithmic scales have been used.
 
 Cams can be plotted individually. The absolute weight is also important, not only the specific weight. When looking at individual cams, it can be seen that Metolius UL strategy is to have multiple and extremely light cams, so you can carry more cams in your harness while keeping the same weight.
 
 ![Expansion rates vs weight](doc/expansion_rate_individual.png)
 
-When the same plot is repeated for specific weights, the slope of the _thick line_ is the opposite. DMM Dragon are very similar to Black Diamond UL, and Black Diamond Z4 excel at small sizes.
+When the same plot is repeated for specific weights, the slope of the _'thick line'_ is the opposite. DMM Dragon are very similar to Black Diamond UL, and Black Diamond Z4 excel at small sizes. The two different designs os Z4 can be observed: single axe for micro-friends and double axis for small friends.
