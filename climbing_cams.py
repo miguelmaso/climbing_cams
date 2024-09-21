@@ -146,26 +146,31 @@ class Rack(list):
         return ' | '.join(unique_names)
 
 
-def load_data():
-    with open(os.path.join(os.path.dirname(os.path.realpath(__file__)),'climbing_cams.csv')) as file:
-        reader = csv.reader(file)
-        next(reader)
-        data = [Cam(*row) for row in reader]
-    return data
+class DB:
+    _data = []
 
-def select_cams(data, brand="", name="", number="", color="", expansion_range=[]):
-    rack = Rack()
-    for cam in data:
-        if ((cam.brand == brand if brand else True) and
-            (cam.name == name if name else True) and
-            (cam.number == number if number else True) and
-            (cam.color == color if color else True) and
-            (expansion_range[0] < cam.min < cam.max < expansion_range[1] if len(expansion_range)==2 else True)):
-            rack.append(cam)
-    return rack
+    @staticmethod
+    def _load():
+        with open(os.path.join(os.path.dirname(os.path.realpath(__file__)),'climbing_cams.csv')) as file:
+            reader = csv.reader(file)
+            next(reader)
+            data = [Cam(*row) for row in reader]
+        DB._data += data
 
-class Plot:
+    @staticmethod
+    def select(brand="", name="", number="", color="", expansion_range=[]):
+        rack = Rack()
+        for cam in DB._data:
+            if ((cam.brand == brand if brand else True) and
+                (cam.name == name if name else True) and
+                (cam.number == number if number else True) and
+                (cam.color == color if color else True) and
+                (expansion_range[0] < cam.min < cam.max < expansion_range[1] if len(expansion_range)==2 else True)):
+                rack.append(cam)
+        return rack
 
+
+class Plots:
     @staticmethod
     def bar_chart(rack, ax=None, ylabel='[{number}]', number_inside=False):
         if ax is None:
@@ -194,14 +199,14 @@ class Plot:
             ax.bar_label(bars, numbers, label_type='center', fontsize=5, weight='bold', color='white')
 
     @staticmethod
-    def plot_ranges(racks_list, smart_ylabels=False, numbers_inside=False):
-        sizes = [len(rack) for rack in racks_list]
-        fig, axes = plt.subplots(nrows=len(racks_list), sharex=True,
+    def plot_ranges(racks, smart_ylabels=False, numbers_inside=False):
+        sizes = [len(rack) for rack in racks]
+        fig, axes = plt.subplots(nrows=len(racks), sharex=True,
             gridspec_kw={'height_ratios':sizes, 'hspace':0})
-        axes = [axes] if len(racks_list) == 1 else axes
+        axes = [axes] if len(racks) == 1 else axes
 
-        for rack, ax in zip(racks_list, axes):
-            Plot.bar_chart(rack, ax, number_inside=numbers_inside)
+        for rack, ax in zip(racks, axes):
+            Plots.bar_chart(rack, ax, number_inside=numbers_inside)
             sep = '\n'
             ax.set_ylabel(f'{rack.name(sep)}')
             ax.spines.right.set_visible(False)
@@ -245,3 +250,5 @@ class Plot:
         ax.set_ylabel(f'{yvalue.replace("_"," ").capitalize()} [{getattr(Units, yvalue)}]')
         fig.tight_layout()
         return fig, ax
+
+DB._load()
