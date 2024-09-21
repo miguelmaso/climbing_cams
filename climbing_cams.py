@@ -12,7 +12,7 @@ class Units:
     length_factor = 1
     weight_factor = 1
     strength_factor = 1
-    range = min = max = avg = 'mm'
+    range = min = max = avg = expansion_range = 'mm'
     weight = 'g'
     strength = 'kN'
     expansion_rate = ''
@@ -23,7 +23,7 @@ class Units:
         if system == cls.System.INTERNATIONAL:
             cls.length_factor = 1
             cls.weight_factor = 1
-            cls.range = cls.min = cls.max = cls.avg = 'mm'
+            cls.range = cls.min = cls.max = cls.avg = cls.expansion_range = 'mm'
             cls.weight = 'g'
             cls.strength = 'kN'
             cls.expansion_rate = ''
@@ -31,7 +31,7 @@ class Units:
         elif system == cls.System.IMPERIAL:
             cls.length_factor = 0.0393701
             cls.weight_factor = 0.00220462
-            cls.range = cls.min = cls.max = cls.avg = 'in'
+            cls.range = cls.min = cls.max = cls.avg = cls.expansion_range = 'in'
             cls.weight = 'lb'
             cls.strength = 'kN'
             cls.expansion_rate = ''
@@ -79,12 +79,16 @@ class Cam:
         return self.max / self.min
 
     @property
+    def expansion_range(self):
+        return self.max - self.min
+
+    @property
     def range(self):
         return [self.max, self.min]
 
     @property
     def specific_weight(self):
-        return self.weight / (self.max - self.min)
+        return self.weight / self.expansion_range
 
 
 class Rack(list):
@@ -127,6 +131,11 @@ class Rack(list):
     def expansion_rate(self):
         ratii = [i.expansion_rate for i in self]
         return sum(ratii) / len(self)
+
+    @property
+    def expansion_range(self):
+        ranges = [i.expansion_range for i in self]
+        return sum(ranges) / len(self)
 
     def name(self, sep=' '):
         names = [i.brand + sep + i.name for i in self]
