@@ -33,6 +33,9 @@ Metolius,UL,5,black,28,39.5,85,10
 Metolius,UL,6,green,32.5,48,96,10
 Metolius,UL,7,lightblue,40,57.5,112,10
 Metolius,UL,8,lightpink,48.5,71.5,129,10
+Metolius,SuperCam,S,gray,42,63.4,184,12
+Metolius,SuperCam,M,maroon,52.5,91.5,255,12
+Metolius,SuperCam,L,blue,66.5,118.5,312,12
 Totem,TotemCam,0.5,black,11.7,18.9,69,6
 Totem,TotemCam,0.65,blue,13.8,22.5,75,8
 Totem,TotemCam,0.8,yellow,17.0,27.7,83,9

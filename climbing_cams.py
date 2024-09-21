@@ -12,7 +12,7 @@ class Units:
     length_factor = 1
     weight_factor = 1
     strength_factor = 1
-    range = min = max = 'mm'
+    range = min = max = avg = 'mm'
     weight = 'g'
     strength = 'kN'
     expansion_rate = ''
@@ -23,7 +23,7 @@ class Units:
         if system == cls.System.INTERNATIONAL:
             cls.length_factor = 1
             cls.weight_factor = 1
-            cls.range = cls.min = cls.max = 'mm'
+            cls.range = cls.min = cls.max = cls.avg = 'mm'
             cls.weight = 'g'
             cls.strength = 'kN'
             cls.expansion_rate = ''
@@ -31,7 +31,7 @@ class Units:
         elif system == cls.System.IMPERIAL:
             cls.length_factor = 0.0393701
             cls.weight_factor = 0.00220462
-            cls.range = cls.min = cls.max = 'in'
+            cls.range = cls.min = cls.max = cls.avg = 'in'
             cls.weight = 'lb'
             cls.strength = 'kN'
             cls.expansion_rate = ''
@@ -61,6 +61,10 @@ class Cam:
     @property
     def max(self):
         return self._max * Units.length_factor
+
+    @property
+    def avg(self):
+        return 0.5 * (self.min + self.max)
 
     @property
     def weight(self):
@@ -93,6 +97,11 @@ class Rack(list):
     def max(self):
         maximums = [i.max for i in self]
         return max(maximums)
+
+    @property
+    def avg(self):
+        averages = [i.avg for i in self]
+        return sum(averages) / len(self)
 
     @property
     def specific_weight(self):
@@ -194,24 +203,30 @@ def plot_ranges(racks_list, smart_ylabels=False, numbers_inside=False):
     fig.tight_layout()
     return fig, axes
 
-def scatter_average(racks_list, xvalue, yvalue):
-    fig, axes = plt.subplots()
-    for rack in racks_list:
-        axes.plot([getattr(rack, xvalue)], [getattr(rack, yvalue)], label=rack.name(), marker='o', markersize=10, linewidth=0, alpha=.7)
-        axes.legend()
-    axes.set_xlabel(f'{xvalue.replace("_"," ").capitalize()} [{getattr(Units, xvalue)}]')
-    axes.set_ylabel(f'{yvalue.replace("_"," ").capitalize()} [{getattr(Units, yvalue)}]')
+def scatter_average(racks, xvalue, yvalue, ax=None):
+    if not ax:
+        fig, ax = plt.subplots()
+    else:
+        fig = ax.get_figure()
+    for rack in racks:
+        ax.plot([getattr(rack, xvalue)], [getattr(rack, yvalue)], label=rack.name(), marker='o', markersize=10, linewidth=0, alpha=.7)
+        ax.legend()
+    ax.set_xlabel(f'{xvalue.replace("_"," ").capitalize()} [{getattr(Units, xvalue)}]')
+    ax.set_ylabel(f'{yvalue.replace("_"," ").capitalize()} [{getattr(Units, yvalue)}]')
     fig.tight_layout()
-    return fig, axes
+    return fig, ax
 
-def scatter_individual(racks_list, xvalue, yvalue):
-    fig, axes = plt.subplots()
-    for rack in racks_list:
+def scatter_individual(racks, xvalue, yvalue, ax=None):
+    if not ax:
+        fig, ax = plt.subplots()
+    else:
+        fig = ax.get_figure()
+    for rack in racks:
         x = [getattr(i, xvalue) for i in rack]
         y = [getattr(i, yvalue) for i in rack]
-        axes.plot(x, y, label=rack.name(), marker='o', markersize=10, linewidth=0, alpha=.7)
-        axes.legend()
-    axes.set_xlabel(f'{xvalue.replace("_"," ").capitalize()} [{getattr(Units, xvalue)}]')
-    axes.set_ylabel(f'{yvalue.replace("_"," ").capitalize()} [{getattr(Units, yvalue)}]')
+        ax.plot(x, y, label=rack.name(), marker='o', markersize=10, linewidth=0, alpha=.7)
+        ax.legend()
+    ax.set_xlabel(f'{xvalue.replace("_"," ").capitalize()} [{getattr(Units, xvalue)}]')
+    ax.set_ylabel(f'{yvalue.replace("_"," ").capitalize()} [{getattr(Units, yvalue)}]')
     fig.tight_layout()
-    return fig, axes
+    return fig, ax
