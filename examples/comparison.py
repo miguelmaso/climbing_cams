@@ -1,6 +1,3 @@
-import sys, os
-sys.path.append(os.path.dirname(os.path.dirname(os.path.realpath(__file__))))
-
 import climbing_cams as cams
 import matplotlib.pyplot as plt
 
