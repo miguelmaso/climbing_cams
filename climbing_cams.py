@@ -144,6 +144,32 @@ class Rack(list):
             if name not in unique_names:
                 unique_names.append(name)
         return ' | '.join(unique_names)
+    
+    def plot_bar_chart(self, ax=None, ylabel='[{number}]', number_inside=False):
+        if ax is None:
+            ax = plt.gca()
+        labels = [ylabel.format(brand=cam.brand, name=cam.name, number=cam.number) for cam in self]
+        minimums = [cam.min for cam in self]
+        maximums = [cam.max for cam in self]
+        ranges = [maximum - minimum for maximum, minimum in zip(maximums, minimums)]
+        colors = [cam.color for cam in self]
+        bars = ax.barh(labels, width=ranges, left=minimums, height=.8, color=colors, alpha=0.7)
+
+        for patch in reversed(bars):
+            bb = patch.get_bbox()
+            color = patch.get_facecolor()
+            p_bbox = mpl.patches.FancyBboxPatch((bb.xmin, bb.ymin),
+                                abs(bb.width), abs(bb.height),
+                                boxstyle="round,pad=0,rounding_size=0.5",
+                                ec="none", fc=color,
+                                mutation_aspect=0.2
+                                )
+            patch.remove()
+            ax.add_patch(p_bbox)
+
+        if number_inside:
+            numbers = [cam.number for cam in self]
+            ax.bar_label(bars, numbers, label_type='center', fontsize=5, weight='bold', color='white')
 
 
 class DB:
@@ -171,42 +197,16 @@ class DB:
 
 
 class Plots:
-    @staticmethod
-    def bar_chart(rack, ax=None, ylabel='[{number}]', number_inside=False):
-        if ax is None:
-            ax = plt.gca()
-        labels = [ylabel.format(brand=cam.brand, name=cam.name, number=cam.number) for cam in rack]
-        minimums = [cam.min for cam in rack]
-        maximums = [cam.max for cam in rack]
-        ranges = [maximum - minimum for maximum, minimum in zip(maximums, minimums)]
-        colors = [cam.color for cam in rack]
-        bars = ax.barh(labels, width=ranges, left=minimums, height=.8, color=colors, alpha=0.7)
-
-        for patch in reversed(bars):
-            bb = patch.get_bbox()
-            color = patch.get_facecolor()
-            p_bbox = mpl.patches.FancyBboxPatch((bb.xmin, bb.ymin),
-                                abs(bb.width), abs(bb.height),
-                                boxstyle="round,pad=0,rounding_size=0.5",
-                                ec="none", fc=color,
-                                mutation_aspect=0.2
-                                )
-            patch.remove()
-            ax.add_patch(p_bbox)
-
-        if number_inside:
-            numbers = [cam.number for cam in rack]
-            ax.bar_label(bars, numbers, label_type='center', fontsize=5, weight='bold', color='white')
 
     @staticmethod
-    def plot_ranges(racks, smart_ylabels=False, numbers_inside=False):
+    def plot_ranges(racks, smart_ylabels=True, numbers_inside=True):
         sizes = [len(rack) for rack in racks]
         fig, axes = plt.subplots(nrows=len(racks), sharex=True,
             gridspec_kw={'height_ratios':sizes, 'hspace':0})
         axes = [axes] if len(racks) == 1 else axes
 
         for rack, ax in zip(racks, axes):
-            Plots.bar_chart(rack, ax, number_inside=numbers_inside)
+            rack.plot_bar_chart(ax, number_inside=numbers_inside)
             sep = '\n'
             ax.set_ylabel(f'{rack.name(sep)}')
             ax.spines.right.set_visible(False)

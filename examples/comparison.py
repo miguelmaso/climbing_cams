@@ -4,7 +4,6 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.realpath(__file__))))
 import climbing_cams as cams
 import matplotlib.pyplot as plt
 
-# data = cams.load_data()
 family_specifications = [
     {'brand':'Metolius',     'name':'UL'},
     {'brand':'Metolius',     'name':'SuperCam'},
@@ -16,7 +15,7 @@ family_specifications = [
     {'brand':'Wild Country', 'name':'Friend'}
 ]
 families = [cams.DB.select(**spec) for spec in family_specifications]
-cams.Plots.plot_ranges(families, smart_ylabels=True, numbers_inside=True)
+cams.Plots.plot_ranges(families)
 cams.Plots.scatter_average(families, 'expansion_rate', 'specific_weight')
 fig, ax = plt.subplots(2,1)
 cams.Plots.scatter_individual(families, 'avg', 'weight', ax[0])
