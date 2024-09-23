@@ -1,4 +1,4 @@
-from . import units
+from .units import Measurements
 
 class Cam:
     def __init__(self, brand, name, number, color, min, max, weight=0, strength=0):
@@ -18,11 +18,11 @@ class Cam:
 
     @property
     def min(self):
-        return self._min * units.length_factor
+        return self._min * Measurements.length.factor
 
     @property
     def max(self):
-        return self._max * units.length_factor
+        return self._max * Measurements.length.factor
 
     @property
     def avg(self):
@@ -30,11 +30,11 @@ class Cam:
 
     @property
     def weight(self):
-        return self._weight * units.weight_factor
+        return self._weight * Measurements.weight.factor
 
     @property
     def strength(self):
-        return self._strength * units.strength_factor
+        return self._strength * Measurements.force.factor
 
     @property
     def expansion_rate(self):

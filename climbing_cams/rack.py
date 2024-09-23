@@ -1,6 +1,5 @@
 import matplotlib as mpl
 from matplotlib import pyplot as plt
-from . import units
 
 class Rack(list):
     @property

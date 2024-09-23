@@ -1,5 +1,5 @@
 import matplotlib.pyplot as plt
-from . import units
+from .units import Measurements
 
 def plot_ranges(racks, smart_ylabels=True, numbers_inside=True):
     sizes = [len(rack) for rack in racks]
@@ -31,8 +31,8 @@ def scatter_average(racks, xvalue, yvalue, ax=None):
     for rack in racks:
         ax.plot([getattr(rack, xvalue)], [getattr(rack, yvalue)], label=rack.name(), marker='o', markersize=10, linewidth=0, alpha=.7)
         ax.legend()
-    ax.set_xlabel(f'{xvalue.replace("_"," ").capitalize()} [{getattr(units, xvalue)}]')
-    ax.set_ylabel(f'{yvalue.replace("_"," ").capitalize()} [{getattr(units, yvalue)}]')
+    ax.set_xlabel(f'{xvalue.replace("_"," ").capitalize()} [{Measurements.get_label(xvalue)}]')
+    ax.set_ylabel(f'{yvalue.replace("_"," ").capitalize()} [{Measurements.get_label(yvalue)}]')
     fig.tight_layout()
     return fig, ax
 
@@ -46,7 +46,7 @@ def scatter_individual(racks, xvalue, yvalue, ax=None):
         y = [getattr(i, yvalue) for i in rack]
         ax.plot(x, y, label=rack.name(), marker='o', markersize=10, linewidth=0, alpha=.7)
         ax.legend()
-    ax.set_xlabel(f'{xvalue.replace("_"," ").capitalize()} [{getattr(units, xvalue)}]')
-    ax.set_ylabel(f'{yvalue.replace("_"," ").capitalize()} [{getattr(units, yvalue)}]')
+    ax.set_xlabel(f'{xvalue.replace("_"," ").capitalize()} [{Measurements.get_label(xvalue)}]')
+    ax.set_ylabel(f'{yvalue.replace("_"," ").capitalize()} [{Measurements.get_label(yvalue)}]')
     fig.tight_layout()
     return fig, ax
