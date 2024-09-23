@@ -7,7 +7,7 @@ _data = []
 
 def _load():
     global _data
-    with open(os.path.join(os.path.dirname(os.path.realpath(__file__)),'cams.csv')) as file:
+    with open(os.path.join(os.path.dirname(os.path.realpath(__file__)),'data/cams.csv')) as file:
         reader = csv.reader(file)
         next(reader)
         data = [Cam(*row) for row in reader]

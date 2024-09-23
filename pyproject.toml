@@ -18,4 +18,4 @@ Homepage = "https://github.com/miguelmaso/climbing_cams"
 Repository = "https://github.com/miguelmaso/climbing_cams"
 
 [tool.hatch.version]
-path = "climbing_cams/__init__.py"
+path = "src/climbing_cams/__init__.py"
