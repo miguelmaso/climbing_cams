@@ -1,0 +1,84 @@
+Brand,Name,Number,Color,Min,Max,Weight,Strength
+BD,C4,0.3,blue,13.8,23.4,75,8
+BD,C4,0.4,grey,15.5,26.7,83,10
+BD,C4,0.5,purple,19.6,33.5,99,12
+BD,C4,0.75,green,23.9,41.2,119,14
+BD,C4,1,red,30.2,52.1,136,14
+BD,C4,2,yellow,37.2,64.9,155,14
+BD,C4,3,blue,50.7,87.9,201,14
+BD,C4,4,grey,66,114.7,289,14
+BD,C4,5,purple,85.4,148.5,380,14
+BD,C4,6,green,114.1,195,557,14
+BD,UL,.4,grey,15.5,26.7,61,8
+BD,UL,.5,purple,19.6,33.5,74,10
+BD,UL,.75,green,23.9,41.2,89,12
+BD,UL,1,red,30.2,52.1,101,12
+BD,UL,2,yellow,37.2,64.9,126,12
+BD,UL,3,blue,50.7,87.9,167,12
+BD,UL,4,grey,66,114.7,225,12
+BD,Z4,0,green,7.5,11.8,43,5
+BD,Z4,.1,red,8.8,13.8,45,5
+BD,Z4,.2,yellow,10.4,16.3,48,6
+BD,Z4,.3,blue,12.4,22.6,54,8
+BD,Z4,.4,grey,15.3,27.7,61,9
+BD,Z4,.5,purple,18.8,33.9,77,10
+BD,Z4,.75,green,23.1,42.1,93,10
+Metolius,UL,00,grey,8.5,12,45,5
+Metolius,UL,0,purple,10,15,45,5
+Metolius,UL,1,blue,12.5,18,52,8
+Metolius,UL,2,yellow,15.5,22.5,55,10
+Metolius,UL,3,orange,18.5,26.5,65,10
+Metolius,UL,4,red,23.5,33.5,75,10
+Metolius,UL,5,black,28,39.5,85,10
+Metolius,UL,6,green,32.5,48,96,10
+Metolius,UL,7,lightblue,40,57.5,112,10
+Metolius,UL,8,lightpink,48.5,71.5,129,10
+Metolius,SuperCam,S,gray,42,63.4,184,12
+Metolius,SuperCam,M,maroon,52.5,91.5,255,12
+Metolius,SuperCam,L,blue,66.5,118.5,312,12
+Totem,TotemCam,0.5,black,11.7,18.9,69,6
+Totem,TotemCam,0.65,blue,13.8,22.5,75,8
+Totem,TotemCam,0.8,yellow,17.0,27.7,83,9
+Totem,TotemCam,1,purple,20.9,34.2,95,10
+Totem,TotemCam,1.25,green,25.7,42.3,109,13
+Totem,TotemCam,1.5,red,31.6,52.2,132,13
+Totem,TotemCam,1.8,orange,39.7,64.2,144,13
+DMM,Dragon,00,blue,14,21,75,9
+DMM,Dragon,0,silver,16,25,85,12
+DMM,Dragon,1,purple,20,33,103,14
+DMM,Dragon,2,green,24,41,117,14
+DMM,Dragon,3,red,29,50,128,14
+DMM,Dragon,4,gold,38,64,154,14
+DMM,Dragon,5,blue,50,85,208,14
+DMM,Dragon,6,silver,68,114,299,14
+DMM,Dragon,7,purple,88,149,362,14
+DMM,Dragon,8,green,116,195,515,14
+Wild Country,Friend,0.4,grey,15.8,26.4,75,9
+Wild Country,Friend,0.5,purple,20.6,34.5,88,12
+Wild Country,Friend,0.75,green,25.8,43,102,12
+Wild Country,Friend,1,red,31.7,53.6,123,12
+Wild Country,Friend,2,yellow,41.5,69.3,142,12
+Wild Country,Friend,3,blue,52.7,88,192,12
+Wild Country,Friend,4,grey,66.8,112.1,260,12
+Rock Empire,Axel,0.25,blue,14,22,98,6
+Rock Empire,Axel,0.5,grey,16,27,100,7
+Rock Empire,Axel,1,lightgrey,18,31,110,8
+Rock Empire,Axel,2,purple,22,38,116,8
+Rock Empire,Axel,3,black,27,47,134,9
+Rock Empire,Axel,4,red,35,60,164,9
+Rock Empire,Axel,5,yellow,46,80,212,14
+Rock Empire,Axel,6,blue,64,108,254,14
+Lacd,Twin,0.5,blue,16.2,25,92,7
+Lacd,Twin,1,grey,17.9,30.6,94,7
+Lacd,Twin,1.5,purple,24.2,37,117,8
+Lacd,Twin,2,green,29,46,129,8
+Lacd,Twin,2.5,red,33.5,58,168,8
+Lacd,Twin,3,yellow,37.5,70,179,10
+Lacd,Twin,3.5,blue,50,80,232,10
+Lacd,Twin,4,grey,65.5,95,265,10
+Alien,X,1,black,9.3,14,55,5
+Alien,X,2,blue,10.8,16.1,56,6
+Alien,X,3,green,13.8,20.8,64,7
+Alien,X,4,yellow,16.1,25.7,64,9
+Alien,X,5,grey,18.6,28,66,9
+Alien,X,6,red,20.3,33.4,70,9

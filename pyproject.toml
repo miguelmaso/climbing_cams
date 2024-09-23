@@ -5,8 +5,8 @@ build-backend = "hatchling.build"
 [project]
 name = "climbing_cams"
 authors = [{name = "Miguel Masó", email = "miguel.maso@upc.edu"}]
-version = "0.0.1"
-license = {text = "MIT License"}
+dynamic = ["version"]
+license = "MIT"
 readme = "README.md"
 description = "Tools for plotting statistics of climbing cams"
 keywords = ["climbing", "rock climbing", "climbing cams", "friends"]
@@ -17,5 +17,5 @@ dependencies = ["matplotlib"]
 Homepage = "https://github.com/miguelmaso/climbing_cams"
 Repository = "https://github.com/miguelmaso/climbing_cams"
 
-[tool.hatch.build]
-include = ["/*.py","/*.csv",]
+[tool.hatch.version]
+path = "climbing_cams/__init__.py"
