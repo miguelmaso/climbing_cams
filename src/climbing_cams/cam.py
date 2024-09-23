@@ -16,6 +16,9 @@ class Cam:
             print(f'min: {self._min}')
             print(f'max: {self._max}')
 
+    def __eq__(self, other):
+        return self.brand == other.brand and self.name == other.name and self.number == other.number
+
     @property
     def min(self):
         return self._min * Measurements.length.factor

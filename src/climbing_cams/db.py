@@ -1,21 +1,21 @@
-import os
 import csv
 from .cam import Cam
 from .rack import Rack
 
-_data = []
+cams = []
 
-def _load():
-    global _data
-    with open(os.path.join(os.path.dirname(os.path.realpath(__file__)),'data/cams.csv')) as file:
+def load(path: str):
+    global cams
+    with open(path) as file:
         reader = csv.reader(file)
         next(reader)
         data = [Cam(*row) for row in reader]
-    _data += data
+    new_data = [cam for cam in data if cam not in cams]
+    cams += new_data
 
 def select(brand="", name="", number="", color="", expansion_range=[]):
     rack = Rack()
-    for cam in _data:
+    for cam in cams:
         if ((cam.brand == brand if brand else True) and
             (cam.name == name if name else True) and
             (cam.number == number if number else True) and
