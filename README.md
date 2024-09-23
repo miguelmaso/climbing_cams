@@ -5,9 +5,16 @@ This tool is intended to show quantitative static properties, such as the expans
 
 A little bit of history. *Friends* where invented by [Ray Jardine](https://www.rayjardine.com/Home/index.php), an aerospace engineer. After several years of development, Ray joined with Mark Valance, who founded Wild Country and commercialized the first *Friends*. Nowadays, the original patents have expired and the climbing cams are now an open market.
 
+## Installation
+
+The recommended installation is via _pip_:
+```
+pip install climbing_cams
+```
+
 ## Some examples
 
-Several cams are pre-loaded in the database, these are the available brands:
+Examples of usage can be found [here](https://github.com/miguelmaso/climbing_cams/tree/main/examples). The package includes some pre-loaded cams in the database, these are the available brands:
 - Black Diamond C4
 - Black Diamond UL
 - Black Diamond Z4
