@@ -14,7 +14,7 @@ pip install climbing_cams
 
 ## Some examples
 
-Examples of usage can be found [here](https://github.com/miguelmaso/climbing_cams/tree/main/examples). The package includes some pre-loaded cams in the database, these are the available brands:
+Examples of usage can be found [here](https://github.com/miguelmaso/climbing_cams/tree/main/examples) and some of the results are discussed below. The package includes some pre-loaded cams in the database, these are the available brands:
 - Black Diamond C4
 - Black Diamond UL
 - Black Diamond Z4
