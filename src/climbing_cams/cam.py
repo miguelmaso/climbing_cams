@@ -49,7 +49,7 @@ class Cam:
 
     @property
     def range(self):
-        return [self.max, self.min]
+        return [self.min, self.max]
 
     @property
     def specific_weight(self):

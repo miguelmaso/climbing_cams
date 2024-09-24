@@ -1,6 +1,6 @@
 import os
-from climbing_cams import db
-from climbing_cams import plots
+from . import db
+from . import plots
 
 __version__ = "0.0.1"
 
