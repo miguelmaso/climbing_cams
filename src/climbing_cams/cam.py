@@ -1,5 +1,6 @@
 from .units import Measurements
 
+
 class Cam:
     def __init__(self, brand, name, number, color, min, max, weight=0, strength=0):
         self.brand = brand

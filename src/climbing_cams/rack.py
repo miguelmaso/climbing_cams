@@ -1,6 +1,7 @@
 import matplotlib as mpl
 from matplotlib import pyplot as plt
 
+
 class Rack(list):
     @property
     def min(self):
@@ -26,12 +27,12 @@ class Rack(list):
     def weight(self):
         weights = [i.weight for i in self]
         return sum(weights)
-    
+
     @property
     def min_strength(self):
         strengths = [i.strength for i in self]
         return min(strengths)
-    
+
     @property
     def max_strength(self):
         strengths = [i.strength for i in self]
@@ -54,7 +55,7 @@ class Rack(list):
             if name not in unique_names:
                 unique_names.append(name)
         return ' | '.join(unique_names)
-    
+
     def plot_bar_chart(self, ax=None, ylabel='[{number}]', number_inside=False):
         if ax is None:
             ax = plt.gca()
@@ -69,11 +70,11 @@ class Rack(list):
             bb = patch.get_bbox()
             color = patch.get_facecolor()
             p_bbox = mpl.patches.FancyBboxPatch((bb.xmin, bb.ymin),
-                                abs(bb.width), abs(bb.height),
-                                boxstyle="round,pad=0,rounding_size=0.5",
-                                ec="none", fc=color,
-                                mutation_aspect=0.2
-                                )
+                                                abs(bb.width), abs(bb.height),
+                                                boxstyle="round,pad=0,rounding_size=0.5",
+                                                ec="none", fc=color,
+                                                mutation_aspect=0.2
+                                                )
             patch.remove()
             ax.add_patch(p_bbox)
 

@@ -1,18 +1,21 @@
 import enum
 
+
 class System(enum.Enum):
     INTERNATIONAL = 1
     IMPERIAL = 2
+
 
 class Unit:
     def __init__(self, label: str, factor: float):
         self.factor = factor
         self.label = label
-    
+
     def __truediv__(self, other):
         label = self.label + '/' + other.label
         factor = self.factor / other.factor
         return Unit(label, factor)
+
 
 class Measurements:
     length = Unit('mm', 1)
@@ -21,14 +24,14 @@ class Measurements:
     dimless = Unit('-', 1)
 
     _measurements = {
-        'min':length,
-        'mas':length,
-        'avg':length,
-        'expansion_range':length,
-        'expansion_rate':dimless,
-        'weight':weight,
-        'strength':force,
-        'specific_weight':weight/length
+        'min': length,
+        'mas': length,
+        'avg': length,
+        'expansion_range': length,
+        'expansion_rate': dimless,
+        'weight': weight,
+        'strength': force,
+        'specific_weight': weight/length
     }
 
     @classmethod

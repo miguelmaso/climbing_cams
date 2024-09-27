@@ -3,13 +3,15 @@ import pytest
 
 tol = 1e-4
 
+
 def create_cam():
-    return cams.cam.Cam('Totem','Cam',1.25,'green',25.7,42.3,109,13)
+    return cams.cam.Cam('Totem', 'Cam', 1.25, 'green', 25.7, 42.3, 109, 13)
 
 def test_cam_eq():
     a = create_cam()
     b = create_cam()
     assert a == b
+
 
 def test_cam_si():
     cam = create_cam()
@@ -22,6 +24,7 @@ def test_cam_si():
     assert cam.weight == 109
     assert cam.strength == 13
 
+
 def test_cam_imp():
     cams.units.Measurements.set_system(cams.units.System.IMPERIAL)
     cam = create_cam()
@@ -33,6 +36,7 @@ def test_cam_imp():
     assert cam.max == pytest.approx(1.6654, tol)
     assert cam.weight == pytest.approx(0.2403, tol)
     assert cam.strength == 13
+
 
 def test_cam_secondary_properties():
     cams.units.Measurements.set_system(cams.units.System.INTERNATIONAL)
