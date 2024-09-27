@@ -34,7 +34,7 @@ def test_cam_imp():
     assert cam.weight == pytest.approx(0.2403, tol)
     assert cam.strength == 13
 
-def test_cam_secondary():
+def test_cam_secondary_properties():
     cams.units.Measurements.set_system(cams.units.System.INTERNATIONAL)
     cam = create_cam()
     assert cam.range == [25.7, 42.3]
