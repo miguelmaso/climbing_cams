@@ -34,8 +34,8 @@ def scatter_average(racks, xvalue, yvalue, ax=None):
         ax.plot([getattr(rack, xvalue)], [getattr(rack, yvalue)],
                 label=rack.name(), marker='o', markersize=10, linewidth=0, alpha=.7)
         ax.legend()
-    ax.set_xlabel(f'{xvalue.replace("_"," ").capitalize()} [{Measurements.get_label(xvalue)}]')
-    ax.set_ylabel(f'{yvalue.replace("_"," ").capitalize()} [{Measurements.get_label(yvalue)}]')
+    ax.set_xlabel(f'{xvalue.replace("_", " ").capitalize()} [{Measurements.get_label(xvalue)}]')
+    ax.set_ylabel(f'{yvalue.replace("_", " ").capitalize()} [{Measurements.get_label(yvalue)}]')
     fig.tight_layout()
     return fig, ax
 
@@ -50,7 +50,7 @@ def scatter_individual(racks, xvalue, yvalue, ax=None):
         y = [getattr(i, yvalue) for i in rack]
         ax.plot(x, y, label=rack.name(), marker='o', markersize=10, linewidth=0, alpha=.7)
         ax.legend()
-    ax.set_xlabel(f'{xvalue.replace("_"," ").capitalize()} [{Measurements.get_label(xvalue)}]')
-    ax.set_ylabel(f'{yvalue.replace("_"," ").capitalize()} [{Measurements.get_label(yvalue)}]')
+    ax.set_xlabel(f'{xvalue.replace("_", " ").capitalize()} [{Measurements.get_label(xvalue)}]')
+    ax.set_ylabel(f'{yvalue.replace("_", " ").capitalize()} [{Measurements.get_label(yvalue)}]')
     fig.tight_layout()
     return fig, ax
