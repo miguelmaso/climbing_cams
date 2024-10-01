@@ -45,3 +45,4 @@ def test_cam_secondary_properties():
     assert cam.expansion_rate == pytest.approx(1.6459, tol)
     assert cam.expansion_range == pytest.approx(16.6, tol)
     assert cam.specific_weight == pytest.approx(6.5663, tol)
+    assert cam.avg == pytest.approx(34, tol)
