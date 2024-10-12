@@ -15,7 +15,7 @@ def load(path: str):
     cams += new_data
 
 
-def select(brand="", name="", number="", color="", expansion_range=[]) -> Rack:
+def select(brand="", name="", number="", color="", range=[]) -> Rack:
     rack = Rack()
     for cam in cams:
         if (
@@ -23,7 +23,7 @@ def select(brand="", name="", number="", color="", expansion_range=[]) -> Rack:
             (cam.name == name if name else True) and
             (cam.number == number if number else True) and
             (cam.color == color if color else True) and
-            (expansion_range[0] < cam.min < cam.max < expansion_range[1] if len(expansion_range) == 2 else True)
+            (range[0] < cam.min < cam.max < range[1] if len(range) == 2 else True)
         ):
             rack.append(cam)
     return rack

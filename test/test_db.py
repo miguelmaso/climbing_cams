@@ -7,5 +7,5 @@ def test_select():
 
 
 def test_select_range():
-    rack = cams.db.select(brand='BD', name='UL', expansion_range=[30, 120])
+    rack = cams.db.select(brand='BD', name='UL', range=[30, 120])
     assert len(rack) == 4
