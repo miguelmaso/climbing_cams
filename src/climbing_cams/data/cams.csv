@@ -23,26 +23,26 @@ BD,Z4,.3,blue,12.4,22.6,54,8
 BD,Z4,.4,grey,15.3,27.7,61,9
 BD,Z4,.5,purple,18.8,33.9,77,10
 BD,Z4,.75,green,23.1,42.1,93,10
-Metolius,UL,00,grey,8.5,12,45,5
-Metolius,UL,0,purple,10,15,45,5
-Metolius,UL,1,blue,12.5,18,52,8
-Metolius,UL,2,yellow,15.5,22.5,55,10
-Metolius,UL,3,orange,18.5,26.5,65,10
-Metolius,UL,4,red,23.5,33.5,75,10
-Metolius,UL,5,black,28,39.5,85,10
-Metolius,UL,6,green,32.5,48,96,10
-Metolius,UL,7,lightblue,40,57.5,112,10
-Metolius,UL,8,lightpink,48.5,71.5,129,10
-Metolius,SuperCam,S,gray,42,63.4,184,12
-Metolius,SuperCam,M,maroon,52.5,91.5,255,12
-Metolius,SuperCam,L,blue,66.5,118.5,312,12
-Totem,TotemCam,0.5,black,11.7,18.9,69,6
-Totem,TotemCam,0.65,blue,13.8,22.5,75,8
-Totem,TotemCam,0.8,yellow,17.0,27.7,83,9
-Totem,TotemCam,1,purple,20.9,34.2,95,10
-Totem,TotemCam,1.25,green,25.7,42.3,109,13
-Totem,TotemCam,1.5,red,31.6,52.2,132,13
-Totem,TotemCam,1.8,orange,39.7,64.2,144,13
+Metolius,Master Cam,00,grey,8.5,12,45,5
+Metolius,Master Cam,0,purple,10,15,45,5
+Metolius,Master Cam,1,blue,12.5,18,52,8
+Metolius,Master Cam,2,yellow,15.5,22.5,55,10
+Metolius,Master Cam,3,orange,18.5,26.5,65,10
+Metolius,Master Cam,4,red,23.5,33.5,75,10
+Metolius,Master Cam,5,black,28,39.5,85,10
+Metolius,Master Cam,6,green,32.5,48,96,10
+Metolius,Master Cam,7,lightblue,40,57.5,112,10
+Metolius,Master Cam,8,lightpink,48.5,71.5,129,10
+Metolius,Super Cam,S,gray,42,63.4,184,12
+Metolius,Super Cam,M,maroon,52.5,91.5,255,12
+Metolius,Super Cam,L,mediumblue,66.5,118.5,312,12
+Totem,Cam,0.5,black,11.7,18.9,69,6
+Totem,Cam,0.65,blue,13.8,22.5,75,8
+Totem,Cam,0.8,yellow,17.0,27.7,83,9
+Totem,Cam,1,purple,20.9,34.2,95,10
+Totem,Cam,1.25,green,25.7,42.3,109,13
+Totem,Cam,1.5,red,31.6,52.2,132,13
+Totem,Cam,1.8,orange,39.7,64.2,144,13
 DMM,Dragon,00,blue,14,21,75,9
 DMM,Dragon,0,silver,16,25,85,12
 DMM,Dragon,1,purple,20,33,103,14
@@ -60,6 +60,12 @@ Wild Country,Friend,1,red,31.7,53.6,123,12
 Wild Country,Friend,2,yellow,41.5,69.3,142,12
 Wild Country,Friend,3,blue,52.7,88,192,12
 Wild Country,Friend,4,grey,66.8,112.1,260,12
+Wild Country,Zero Friend,0.1,red,8.04,13.2,49,5
+Wild Country,Zero Friend,0.2,yellow,9.9,16.25,51,6
+Wild Country,Zero Friend,0.3,blue,13.44,22.12,68,8
+Wild Country,Zero Friend,0.4,gray,18.5,26,70,9
+Wild Country,Zero Friend,0.5,purple,20,32.9,76,9
+Wild Country,Zero Friend,0.75,red,25,41.1,81,9
 Rock Empire,Axel,0.25,blue,14,22,98,6
 Rock Empire,Axel,0.5,grey,16,27,100,7
 Rock Empire,Axel,1,lightgrey,18,31,110,8
