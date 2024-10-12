@@ -4,9 +4,9 @@ from .rack import Rack
 from .units import Measurements
 
 
-def rack_barchart(rack, ax=None, ylabel='[{number}]', numbers_inside=False):
+def rack_bar_chart(rack, ax=None, ylabel='[{number}]', numbers_inside=False):
     if not isinstance(rack, Rack):
-        raise Exception(f'{rack_barchart} must be called with a {Rack} instance but it was called with {type(rack)}')
+        raise Exception(f'{rack_bar_chart} must be called with a {Rack} instance but it was called with {type(rack)}')
     if ax is None:
         ax = plt.gca()
     labels = [ylabel.format(brand=cam.brand, name=cam.name, number=cam.number) for cam in rack]
@@ -34,16 +34,16 @@ def rack_barchart(rack, ax=None, ylabel='[{number}]', numbers_inside=False):
     return plt.gcf(), ax
 
 
-def racks_barchart(racks, smart_ylabels=True, numbers_inside=True):
+def racks_bar_chart(racks, smart_ylabels=True, numbers_inside=True):
     if not isinstance(racks[0], Rack):
-        raise Exception(f'{racks_barchart} must be called with a list of {Rack} but it was called with a list of {type(racks[0])}')
+        raise Exception(f'{racks_bar_chart} must be called with a list of {Rack} but it was called with a list of {type(racks[0])}')
     sizes = [len(rack) for rack in racks]
     fig, axes = plt.subplots(nrows=len(racks), sharex=True,
                              gridspec_kw={'height_ratios': sizes, 'hspace': 0})
     axes = [axes] if len(racks) == 1 else axes
 
     for rack, ax in zip(racks, axes):
-        rack_barchart(rack, ax, numbers_inside=numbers_inside)
+        rack_bar_chart(rack, ax, numbers_inside=numbers_inside)
         sep = '\n'
         ax.set_ylabel(f'{rack.name(sep)}')
         ax.spines.right.set_visible(False)
