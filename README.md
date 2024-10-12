@@ -3,7 +3,7 @@
 ![PyPI](https://badge.fury.io/py/climbing-cams.svg)
 [![Build](https://github.com/miguelmaso/climbing_cams/actions/workflows/python-package.yml/badge.svg)](https://github.com/miguelmaso/climbing_cams/actions/workflows/python-package.yml)
 [![Lint](https://github.com/miguelmaso/climbing_cams/actions/workflows/python-lint.yml/badge.svg)](https://github.com/miguelmaso/climbing_cams/actions/workflows/python-lint.yml)
-[![codecov](https://codecov.io/gh/miguelmaso/climbing_cams/branch/main/graph/badge.svg)](https://app.codecov.io/gh/miguelmaso/climbing_cams)
+[![codecov](https://codecov.io/gh/miguelmaso/climbing_cams/branch/main/graph/badge.svg)](https://app.codecov.io/gh/miguelmaso/climbing_cams/tree/main/src/climbing_cams)
 
 Just for fun. This small repo contains a set of tools for graphic visualization of the properties of climbing cams or *friends*.
 This tool is intended to show quantitative static properties, such as the expansion rate or weight. Other properties are not static, such as price. Hence, it is not included in this repo. Finally, but not least important, there are qualitative properties, such as walking and personal feeling, which are not included in this repo.
