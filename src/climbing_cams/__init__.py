@@ -1,6 +1,8 @@
 import os
 from . import db
 from . import plots
+from . import cam
+from . import rack
 
 __version__ = "0.0.1"
 

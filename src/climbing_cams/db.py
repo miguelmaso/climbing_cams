@@ -2,7 +2,7 @@ import csv
 from .cam import Cam
 from .rack import Rack
 
-cams = []
+cams: Rack = []
 
 
 def load(path: str):

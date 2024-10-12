@@ -12,9 +12,12 @@ class Unit:
         self.label = label
 
     def __truediv__(self, other):
-        label = self.label + '/' + other.label
-        factor = self.factor / other.factor
-        return Unit(label, factor)
+        if isinstance(other, Unit):
+            label = self.label + '/' + other.label
+            factor = self.factor / other.factor
+            return Unit(label, factor)
+        else:
+            raise Exception(f'Unknown operator </> between {Unit} and {type(other)}')
 
 
 class Measurements:
