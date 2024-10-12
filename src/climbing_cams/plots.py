@@ -6,7 +6,7 @@ from .units import Measurements
 
 def rack_barchart(rack, ax=None, ylabel='[{number}]', numbers_inside=False):
     if not isinstance(rack, Rack):
-        raise Exception(f'<climbing_cams.plots.rack_barchart> must be called with a <climbing_cams.rack.Rack> instance but was called with {type(rack)}')
+        raise Exception(f'{rack_barchart} must be called with a {Rack} instance but it was called with {type(rack)}')
     if ax is None:
         ax = plt.gca()
     labels = [ylabel.format(brand=cam.brand, name=cam.name, number=cam.number) for cam in rack]
@@ -36,7 +36,7 @@ def rack_barchart(rack, ax=None, ylabel='[{number}]', numbers_inside=False):
 
 def racks_barchart(racks, smart_ylabels=True, numbers_inside=True):
     if not isinstance(racks[0], Rack):
-        raise Exception(f'<climbing_cams.plots.racks_barchar> must be called with a list of <climbing_cams.rack.Rack> but was called with {type(racks)}')
+        raise Exception(f'{racks_barchart} must be called with a list of {Rack} but it was called with a list of {type(racks[0])}')
     sizes = [len(rack) for rack in racks]
     fig, axes = plt.subplots(nrows=len(racks), sharex=True,
                              gridspec_kw={'height_ratios': sizes, 'hspace': 0})
