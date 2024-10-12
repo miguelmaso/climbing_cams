@@ -7,6 +7,7 @@ tol = 1e-4
 def create_cam():
     return cams.cam.Cam('Totem', 'Cam', 1.25, 'green', 25.7, 42.3, 109, 13)
 
+
 def test_cam_eq():
     a = create_cam()
     b = create_cam()
@@ -53,4 +54,6 @@ def test_cam_create_2(capsys):
     captured = capsys.readouterr()
     assert cam.min == 25.7
     assert cam.max == 42.3
-    assert captured.out == 'The cam Totem Cam [1.25] has been defined with a negative range. New range:\nmin: 25.7\nmax: 42.3\n'
+    assert captured.out == 'The cam Totem Cam [1.25] has been defined with a negative range. New range:\n' + \
+                            'min: 25.7\n' + \
+                            'max: 42.3\n'
