@@ -22,3 +22,28 @@ def test_rack_barchart():
     fig, ax = cams.plots.rack_barchart(rack)
     assert type(fig) == mpl.figure.Figure
     assert type(ax) == mpl.axes._axes.Axes
+
+
+def test_racks_barchart():
+    racks = [cams.db.select(**spec) for spec in [{'name': 'C4'}, {'name': 'UL'}]]
+    assert len(racks) == 2
+    fig, ax = cams.plots.racks_barchart(racks)
+    assert type(fig) == mpl.figure.Figure
+    assert len(ax) == 2
+
+
+def test_scatter_individual():
+    racks = [cams.db.select(**spec) for spec in [{'name': 'C4'}, {'name': 'UL'}]]
+    assert len(racks) == 2
+    fig, ax = cams.plots.scatter_individual(racks, 'avg', 'weight')
+    assert type(fig) == mpl.figure.Figure
+    assert type(ax) == mpl.axes._axes.Axes
+
+
+def test_scatter_individual():
+    racks = [cams.db.select(**spec) for spec in [{'name': 'C4'}, {'name': 'UL'}]]
+    assert len(racks) == 2
+    fig, ax = cams.plots.scatter_average(racks, 'avg', 'weight')
+    assert type(fig) == mpl.figure.Figure
+    assert type(ax) == mpl.axes._axes.Axes
+
