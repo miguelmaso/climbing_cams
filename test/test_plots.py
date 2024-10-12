@@ -43,7 +43,7 @@ def test_scatter_individual():
 def test_scatter_individual():
     racks = [cams.db.select(**spec) for spec in [{'name': 'C4'}, {'name': 'UL'}]]
     assert len(racks) == 2
-    fig, ax = cams.plots.scatter_average(racks, 'avg', 'weight')
+    fig, ax = cams.plots.scatter_individual(racks, 'avg', 'weight')
     assert type(fig) == mpl.figure.Figure
     assert type(ax) == mpl.axes._axes.Axes
 
