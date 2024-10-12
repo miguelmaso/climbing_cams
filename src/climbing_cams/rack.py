@@ -1,6 +1,3 @@
-import matplotlib as mpl
-from matplotlib import pyplot as plt
-
 
 class Rack(list):
     @property
@@ -55,29 +52,3 @@ class Rack(list):
             if name not in unique_names:
                 unique_names.append(name)
         return ' | '.join(unique_names)
-
-    def plot_bar_chart(self, ax=None, ylabel='[{number}]', number_inside=False):
-        if ax is None:
-            ax = plt.gca()
-        labels = [ylabel.format(brand=cam.brand, name=cam.name, number=cam.number) for cam in self]
-        minimums = [cam.min for cam in self]
-        maximums = [cam.max for cam in self]
-        ranges = [maximum - minimum for maximum, minimum in zip(maximums, minimums)]
-        colors = [cam.color for cam in self]
-        bars = ax.barh(labels, width=ranges, left=minimums, height=.8, color=colors, alpha=0.7)
-
-        for patch in reversed(bars):
-            bb = patch.get_bbox()
-            color = patch.get_facecolor()
-            p_bbox = mpl.patches.FancyBboxPatch((bb.xmin, bb.ymin),
-                                                abs(bb.width), abs(bb.height),
-                                                boxstyle="round,pad=0,rounding_size=0.5",
-                                                ec="none", fc=color,
-                                                mutation_aspect=0.2
-                                                )
-            patch.remove()
-            ax.add_patch(p_bbox)
-
-        if number_inside:
-            numbers = [cam.number for cam in self]
-            ax.bar_label(bars, numbers, label_type='center', fontsize=5, weight='bold', color='white')
