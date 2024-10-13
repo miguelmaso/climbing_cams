@@ -1,5 +1,5 @@
 import matplotlib.pyplot as plt
-from matplotlib.patches import FancyBboxPatch
+from matplotlib import axes, patches
 from .rack import Rack
 from .units import Measurements
 
@@ -19,12 +19,12 @@ def rack_bar_chart(rack, ax=None, ylabel='[{number}]', numbers_inside=False):
     for patch in reversed(bars):
         bb = patch.get_bbox()
         color = patch.get_facecolor()
-        p_bbox = FancyBboxPatch((bb.xmin, bb.ymin),
-                                abs(bb.width), abs(bb.height),
-                                boxstyle="round,pad=0,rounding_size=0.5",
-                                ec="none", fc=color,
-                                mutation_aspect=0.2
-                                )
+        p_bbox = patches.FancyBboxPatch((bb.xmin, bb.ymin),
+                                        abs(bb.width), abs(bb.height),
+                                        boxstyle="round,pad=0,rounding_size=0.5",
+                                        ec="none", fc=color,
+                                        mutation_aspect=0.2
+                                        )
         patch.remove()
         ax.add_patch(p_bbox)
 
@@ -36,7 +36,8 @@ def rack_bar_chart(rack, ax=None, ylabel='[{number}]', numbers_inside=False):
 
 def racks_bar_chart(racks, smart_ylabels=True, numbers_inside=True):
     if not isinstance(racks[0], Rack):
-        raise Exception(f'{racks_bar_chart} must be called with a list of {Rack} but it was called with a list of {type(racks[0])}')
+        raise Exception(f'{racks_bar_chart} must be called with a list of {Rack} ' + \
+                        f'but it was called with a list of {type(racks[0])}')
     sizes = [len(rack) for rack in racks]
     fig, axes = plt.subplots(nrows=len(racks), sharex=True,
                              gridspec_kw={'height_ratios': sizes, 'hspace': 0})

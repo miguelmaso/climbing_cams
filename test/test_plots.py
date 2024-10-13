@@ -1,5 +1,5 @@
 import climbing_cams as cams
-import matplotlib as mpl
+from matplotlib import figure, axes
 import pytest
 
 
@@ -20,23 +20,23 @@ def test_racks_bar_chart_fail():
 def test_rack_bar_chart():
     rack = cams.db.select(name="C4")
     fig, ax = cams.plots.rack_bar_chart(rack)
-    assert type(fig) == mpl.figure.Figure
-    assert type(ax) == mpl.axes._axes.Axes
+    assert isinstance(fig, figure.Figure)
+    assert isinstance(ax, axes.Axes)
 
 
 def test_racks_bar_chart():
     racks = [cams.db.select(**spec) for spec in [{'name': 'C4'}, {'name': 'UL'}]]
     assert len(racks) == 2
     fig, ax = cams.plots.racks_bar_chart(racks)
-    assert type(fig) == mpl.figure.Figure
+    assert isinstance(fig, figure.Figure)
     assert len(ax) == 2
 
 
 def test_scatter_individual():
     racks = [cams.db.select(**spec) for spec in [{'name': 'C4'}, {'name': 'UL'}]]
     fig, ax = cams.plots.scatter_individual(racks, 'avg', 'weight')
-    assert type(fig) == mpl.figure.Figure
-    assert type(ax) == mpl.axes._axes.Axes
+    assert isinstance(fig, figure.Figure)
+    assert isinstance(ax, axes.Axes)
     assert len(ax.lines) == 2
     line_c4 = ax.lines[0]
     assert len(line_c4.get_data()[0]) == 10
@@ -48,11 +48,10 @@ def test_scatter_average():
     racks = [cams.db.select(**spec) for spec in [{'name': 'C4'}, {'name': 'UL'}]]
     assert len(racks) == 2
     fig, ax = cams.plots.scatter_average(racks, 'avg', 'weight')
-    assert type(fig) == mpl.figure.Figure
-    assert type(ax) == mpl.axes._axes.Axes
+    assert isinstance(fig, figure.Figure)
+    assert isinstance(ax, axes.Axes)
     assert len(ax.lines) == 2
     line_c4 = ax.lines[0]
     assert len(line_c4.get_data()[0]) == 1
     line_ul = ax.lines[1]
     assert len(line_ul.get_data()[0]) == 1
-

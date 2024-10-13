@@ -55,5 +55,5 @@ def test_cam_create_2(capsys):
     assert cam.min == 25.7
     assert cam.max == 42.3
     assert captured.out == 'The cam Totem Cam [1.25] has been defined with a negative range. New range:\n' + \
-                            'min: 25.7\n' + \
-                            'max: 42.3\n'
+                           'min: 25.7\n' + \
+                           'max: 42.3\n'

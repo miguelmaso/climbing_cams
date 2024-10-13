@@ -15,7 +15,7 @@ def load(path: str):
     cams += new_data
 
 
-def select(brand="", name="", number="", color="", range=[]) -> Rack:
+def select(brand="", name="", number="", color="", range: tuple[float,float] = []) -> Rack:
     rack = Rack()
     for cam in cams:
         if (

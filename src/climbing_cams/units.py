@@ -30,11 +30,12 @@ class Measurements:
         'min': length,
         'mas': length,
         'avg': length,
+        'range': length,
         'expansion_range': length,
         'expansion_rate': dimless,
         'weight': weight,
         'strength': force,
-        'specific_weight': weight/length
+        'specific_weight': weight / length
     }
 
     @classmethod
