@@ -37,7 +37,7 @@ def rack_bar_chart(rack: Rack, ax: axes.Axes = None, ylabel='[{number}]', number
 
 def racks_bar_chart(racks: list[Rack], smart_ylabels=True, numbers_inside=True):
     if not isinstance(racks[0], Rack):
-        raise Exception(f'{racks_bar_chart} must be called with a list of {Rack} ' + \
+        raise Exception(f'{racks_bar_chart} must be called with a list of {Rack} ' +
                         f'but it was called with a list of {type(racks[0])}')
     sizes = [len(rack) for rack in racks]
     fig, axes = plt.subplots(nrows=len(racks), sharex=True,

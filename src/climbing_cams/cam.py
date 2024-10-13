@@ -2,7 +2,8 @@ from .units import Measurements
 
 
 class Cam:
-    def __init__(self, brand: str, name: str, number: any, color: str, min: float, max: float, weight: float = 0, strength: float = 0):
+    def __init__(self, brand: str, name: str, number: any, color: str,
+                 min: float, max: float, weight: float = 0, strength: float = 0):
         self.brand = brand
         self.name = name
         self.number = number
