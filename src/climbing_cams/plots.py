@@ -5,7 +5,7 @@ from .rack import Rack
 from .units import Measurements
 
 
-def rack_bar_chart(rack, ax=None, ylabel='[{number}]', numbers_inside=False):
+def rack_bar_chart(rack: Rack, ax: axes.Axes = None, ylabel='[{number}]', numbers_inside=False):
     if not isinstance(rack, Rack):
         raise Exception(f'{rack_bar_chart} must be called with a {Rack} instance but it was called with {type(rack)}')
     if ax is None:
@@ -35,7 +35,7 @@ def rack_bar_chart(rack, ax=None, ylabel='[{number}]', numbers_inside=False):
     return plt.gcf(), ax
 
 
-def racks_bar_chart(racks, smart_ylabels=True, numbers_inside=True):
+def racks_bar_chart(racks: list[Rack], smart_ylabels=True, numbers_inside=True):
     if not isinstance(racks[0], Rack):
         raise Exception(f'{racks_bar_chart} must be called with a list of {Rack} ' + \
                         f'but it was called with a list of {type(racks[0])}')
@@ -61,7 +61,7 @@ def racks_bar_chart(racks, smart_ylabels=True, numbers_inside=True):
     return fig, axes
 
 
-def scatter_average(racks, xvalue, yvalue, ax=None):
+def scatter_average(racks: list[Rack], xvalue: str, yvalue: str, ax: axes.Axes = None):
     if not ax:
         fig, ax = plt.subplots()
     else:
@@ -70,13 +70,13 @@ def scatter_average(racks, xvalue, yvalue, ax=None):
         ax.plot([getattr(rack, xvalue)], [getattr(rack, yvalue)],
                 label=rack.name(), marker='o', markersize=10, linewidth=0, alpha=.7)
         ax.legend()
-    ax.set_xlabel(f'{xvalue.replace("_", " ").capitalize()} [{Measurements.get_label(xvalue)}]')
-    ax.set_ylabel(f'{yvalue.replace("_", " ").capitalize()} [{Measurements.get_label(yvalue)}]')
+    ax.set_xlabel(f'{xvalue.replace('_', ' ').capitalize()} [{Measurements.get_label(xvalue)}]')
+    ax.set_ylabel(f'{yvalue.replace('_', ' ').capitalize()} [{Measurements.get_label(yvalue)}]')
     fig.tight_layout()
     return fig, ax
 
 
-def scatter_individual(racks, xvalue, yvalue, ax=None):
+def scatter_individual(racks: list[Rack], xvalue: str, yvalue: str, ax: axes.Axes = None):
     if not ax:
         fig, ax = plt.subplots()
     else:
@@ -86,8 +86,8 @@ def scatter_individual(racks, xvalue, yvalue, ax=None):
         y = [getattr(i, yvalue) for i in rack]
         ax.plot(x, y, label=rack.name(), marker='o', markersize=10, linewidth=0, alpha=.7)
         ax.legend()
-    ax.set_xlabel(f'{xvalue.replace("_", " ").capitalize()} [{Measurements.get_label(xvalue)}]')
-    ax.set_ylabel(f'{yvalue.replace("_", " ").capitalize()} [{Measurements.get_label(yvalue)}]')
+    ax.set_xlabel(f'{xvalue.replace('_', ' ').capitalize()} [{Measurements.get_label(xvalue)}]')
+    ax.set_ylabel(f'{yvalue.replace('_', ' ').capitalize()} [{Measurements.get_label(yvalue)}]')
     fig.tight_layout()
     return fig, ax
 
@@ -101,11 +101,10 @@ def weight_range(rack: Rack, ax: axes.Axes = None):
     mins = [cam.min for cam in rack]
     maxs = [cam.max for cam in rack]
     p = ax.fill_betweenx(cum_weights, mins, maxs, alpha=.2, label=rack.name())
-    # p.set_edgecolor(p.get_facecolor())
     for min, max, w in zip(mins, maxs, cum_weights):
         plt.axhline(w, min, max, c=p.get_facecolor())
         plt.plot([min, max], [w, w], c=p.get_facecolor())
-    ax.set_xlabel(f'range [{Measurements.get_label('range')}]')
-    ax.set_ylabel(f'cum weight [{Measurements.get_label('weight')}]')
+    ax.set_xlabel(f'range [{Measurements.get_label("range")}]')
+    ax.set_ylabel(f'cum weight [{Measurements.get_label("weight")}]')
     ax.set_xscale('log')
     return fig, ax
