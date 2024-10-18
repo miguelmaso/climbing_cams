@@ -92,7 +92,7 @@ def scatter_individual(racks: list[Rack], xvalue: str, yvalue: str, ax: axes.Axe
     return fig, ax
 
 
-def weight_range(rack: Rack, ax: axes.Axes = None):
+def weight_range(rack: Rack, ax: axes.Axes = None, **kwargs):
     if not ax:
         fig, ax = plt.subplots()
     else:
@@ -100,10 +100,10 @@ def weight_range(rack: Rack, ax: axes.Axes = None):
     cum_weights = np.cumsum([cam.weight for cam in rack])
     mins = [cam.min for cam in rack]
     maxs = [cam.max for cam in rack]
-    p = ax.fill_betweenx(cum_weights, mins, maxs, alpha=.2, label=rack.name())
+    p = ax.fill_betweenx(cum_weights, mins, maxs, alpha=.2, label=rack.name(), **kwargs)
     for min, max, w in zip(mins, maxs, cum_weights):
-        plt.axhline(w, min, max, c=p.get_facecolor())
-        plt.plot([min, max], [w, w], c=p.get_facecolor())
+        ax.axhline(w, min, max, c=p.get_facecolor())
+        ax.plot([min, max], [w, w], c=p.get_facecolor())
     ax.set_xlabel(f'range [{Measurements.get_label("range")}]')
     ax.set_ylabel(f'cum weight [{Measurements.get_label("weight")}]')
     ax.set_xscale('log')
