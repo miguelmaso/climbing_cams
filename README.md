@@ -44,9 +44,13 @@ Examples of usage can be found [here](https://github.com/miguelmaso/climbing_cam
 - LACD Twin
 - Alien X
 
+### Bar chart
+
 The figure below shows a typical bar chart for rack comparison. Selection of cams can be done by the user.
 
 ![Expansion range bar chart](https://github.com/miguelmaso/climbing_cams/raw/main/doc/climbing_cams_bar_chart.png)
+
+### Scatter plots
 
 Scatter plots can show the average of a family or plot individually every cam. Family plots are more compacts and easier to read. In the exampe below, specific weight vs expansion rate, which are interesting properties, are compared in a family plot. Surprisingly, Wild Country Friends are extremely light according to this comparison.
 
@@ -59,6 +63,8 @@ Cams can be plotted individually. The absolute weight is also important, not onl
 ![Expansion rates vs weight](https://github.com/miguelmaso/climbing_cams/raw/main/doc/expansion_rate_individual.png)
 
 When the same plot is repeated for specific weights, the slope of the _'thick line'_ is the opposite. DMM Dragon are very similar to Black Diamond UL, and Black Diamond Z4 excel at small sizes. The two different designs os Z4 can be observed: single axe for micro-friends and double axis for small friends.
+
+### Weight vs range
 
 Finally, the best plot is a weight range comparison. In this plot, each cam is an horizontal line and the incremental weight is a region filled to the precedent cam.
 
