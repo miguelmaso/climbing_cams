@@ -59,3 +59,9 @@ Cams can be plotted individually. The absolute weight is also important, not onl
 ![Expansion rates vs weight](https://github.com/miguelmaso/climbing_cams/raw/main/doc/expansion_rate_individual.png)
 
 When the same plot is repeated for specific weights, the slope of the _'thick line'_ is the opposite. DMM Dragon are very similar to Black Diamond UL, and Black Diamond Z4 excel at small sizes. The two different designs os Z4 can be observed: single axe for micro-friends and double axis for small friends.
+
+Finally, the best plot is a weight range comparison. In this plot, each cam is an horizontal line and the incremental weight is a region filled to the precedent cam.
+
+![Weight vs range](https://github.com/miguelmaso/climbing_cams/raw/main/doc/weight_range.png)
+
+Given that the horizontal scale is logarithmic, the line extent of a cam is its expansion rate ($\log(max) - \log(min) = \log(max/min)$). From this plot it is also easy to see how many cams (lines) are under a certain weight. Finally, the slope of a rack is a measure of the incemental weight, gentle slopes are preferred over steep slopes.
