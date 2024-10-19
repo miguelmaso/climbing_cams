@@ -3,6 +3,9 @@ name: Create draft release
 
 on: workflow_dispatch
 
+permissions:
+  contents: write
+
 jobs:
   release:
 
@@ -26,3 +29,5 @@ jobs:
       run: |
         v=$(pip show climbing_cams | grep Version)
         gh release create $v dist/* --draft --generate-notes
+      env:
+        GH_TOKEN: ${{ github.token }}
