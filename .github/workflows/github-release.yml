@@ -27,8 +27,8 @@ jobs:
         python -m build
     - name: Create draft release
       run: |
-        v=$(pip show climbing_cams | grep Version)
+        v=$(pip show climbing_cams | grep Version: | cut -d ' ' -f 2)
         echo "$v"
-        gh release create 0.0.2 dist/* --draft --generate-notes
+        gh release create $v dist/* --draft --generate-notes
       env:
         GH_TOKEN: ${{ github.token }}
