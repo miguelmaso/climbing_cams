@@ -1,7 +1,7 @@
 # Climbing cams
 
 [![PyPI](https://badge.fury.io/py/climbing-cams.svg)](https://pypi.org/project/climbing-cams/)
-[![Build](https://github.com/miguelmaso/climbing_cams/actions/workflows/python-package.yml/badge.svg)](https://github.com/miguelmaso/climbing_cams/actions/workflows/python-package.yml)
+[![Build](https://github.com/miguelmaso/climbing_cams/actions/workflows/python-package.yml/badge.svg?style=flat-square)](https://github.com/miguelmaso/climbing_cams/actions/workflows/python-package.yml)
 [![Lint](https://github.com/miguelmaso/climbing_cams/actions/workflows/python-lint.yml/badge.svg)](https://github.com/miguelmaso/climbing_cams/actions/workflows/python-lint.yml)
 [![codecov](https://codecov.io/gh/miguelmaso/climbing_cams/branch/main/graph/badge.svg)](https://app.codecov.io/gh/miguelmaso/climbing_cams/tree/main/src/climbing_cams)
 
