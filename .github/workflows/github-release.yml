@@ -22,4 +22,5 @@ jobs:
       run: python -m build
     - name: Create draft release
       run: |
-        gh release create (pip show climbing_cams | grep Version) dist/* --draft --generate-notes
+        v=$(pip show climbing_cams | grep Version)
+        gh release create $v dist/* --draft --generate-notes
