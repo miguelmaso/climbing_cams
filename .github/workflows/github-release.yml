@@ -1,3 +1,4 @@
+# This workflow will create a draft release setting the tag according to the package version
 
 name: Create draft release
 
@@ -28,7 +29,6 @@ jobs:
     - name: Create draft release
       run: |
         v=$(pip show climbing_cams | grep Version: | cut -d ' ' -f 2)
-        echo "$v"
         gh release create $v dist/* --draft --generate-notes
       env:
         GH_TOKEN: ${{ github.token }}
