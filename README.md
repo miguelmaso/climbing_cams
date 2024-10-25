@@ -70,4 +70,4 @@ Finally, the best plot is a weight range comparison. In this plot, each cam is a
 
 ![Weight vs range](https://github.com/miguelmaso/climbing_cams/raw/main/doc/weight_range.png)
 
-Given that the horizontal scale is logarithmic, the line extent of a cam is its expansion rate ($\log(max) - \log(min) = \log(max/min)$). From this plot it is also easy to see how many cams (lines) are under a certain weight. Finally, the slope of a rack is a measure of the incemental weight, gentle slopes are preferred over steep slopes.
+Given that the horizontal scale is logarithmic, the line extent of a cam is its expansion rate ( $\log(max) - \log(min) = \log(max/min)$ ). From this plot it is also easy to see how many cams (lines) are under a certain weight. Finally, the slope of a rack is a measure of the incemental weight, gentle slopes are preferred over steep slopes.
