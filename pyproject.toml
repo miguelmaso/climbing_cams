@@ -11,7 +11,7 @@ readme = "README.md"
 description = "Tools for plotting statistics of climbing cams"
 keywords = ["climbing", "rock climbing", "climbing cams", "friends"]
 requires-python = ">=3"
-dependencies = ["numpy", "matplotlib"]
+dependencies = ["matplotlib"]
 
 [project.urls]
 Homepage = "https://github.com/miguelmaso/climbing_cams"

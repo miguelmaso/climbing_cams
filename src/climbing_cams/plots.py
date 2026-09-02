@@ -1,19 +1,20 @@
-import numpy as np
-import matplotlib.pyplot as plt
+from matplotlib import pyplot as plt
 from matplotlib import axes, patches
-from .rack import Rack
+from itertools import accumulate
+from operator import sub
 from .units import Measurements
 
+# Implementation behind Rack.barh() / Rack.weight_range() and
+# Racks.barh() / Racks.scatter(). Not meant to be called directly.
 
-def rack_bar_chart(rack: Rack, ax: axes.Axes = None, ylabel='[{number}]', numbers_inside=False):
-    if not isinstance(rack, Rack):
-        raise Exception(f'{rack_bar_chart} must be called with a {Rack} instance but it was called with {type(rack)}')
+
+def _rack_barh(rack, ax: axes.Axes = None, ylabel='[{number}]', numbers_inside=False):
     if ax is None:
         ax = plt.gca()
     labels = [ylabel.format(brand=cam.brand, name=cam.name, number=cam.number) for cam in rack]
     minimums = [cam.min for cam in rack]
     maximums = [cam.max for cam in rack]
-    ranges = [maximum - minimum for maximum, minimum in zip(maximums, minimums)]
+    ranges = [sub(*x) for x in zip(maximums, minimums)]
     colors = [cam.color for cam in rack]
     bars = ax.barh(labels, width=ranges, left=minimums, height=.8, color=colors, alpha=0.7)
 
@@ -35,17 +36,14 @@ def rack_bar_chart(rack: Rack, ax: axes.Axes = None, ylabel='[{number}]', number
     return plt.gcf(), ax
 
 
-def racks_bar_chart(racks: list[Rack], smart_ylabels=True, numbers_inside=True):
-    if not isinstance(racks[0], Rack):
-        raise Exception(f'{racks_bar_chart} must be called with a list of {Rack} ' +
-                        f'but it was called with a list of {type(racks[0])}')
+def _racks_barh(racks, smart_ylabels=True, numbers_inside=True):
     sizes = [len(rack) for rack in racks]
     fig, axes = plt.subplots(nrows=len(racks), sharex=True,
                              gridspec_kw={'height_ratios': sizes, 'hspace': 0})
     axes = [axes] if len(racks) == 1 else axes
 
     for rack, ax in zip(racks, axes):
-        rack_bar_chart(rack, ax, numbers_inside=numbers_inside)
+        _rack_barh(rack, ax, numbers_inside=numbers_inside)
         sep = '\n'
         ax.set_ylabel(f'{rack.name(sep)}')
         ax.spines.right.set_visible(False)
@@ -61,29 +59,18 @@ def racks_bar_chart(racks: list[Rack], smart_ylabels=True, numbers_inside=True):
     return fig, axes
 
 
-def scatter_average(racks: list[Rack], xvalue: str, yvalue: str, ax: axes.Axes = None):
+def _racks_scatter(racks, xvalue: str, yvalue: str, ax: axes.Axes = None, individual=False):
     if not ax:
         fig, ax = plt.subplots()
     else:
         fig = ax.get_figure()
     for rack in racks:
-        ax.plot([getattr(rack, xvalue)], [getattr(rack, yvalue)],
-                label=rack.name(), marker='o', markersize=10, linewidth=0, alpha=.7)
-        ax.legend()
-    ax.set_xlabel(f'{xvalue.replace("_", " ").capitalize()} [{Measurements.get_label(xvalue)}]')
-    ax.set_ylabel(f'{yvalue.replace("_", " ").capitalize()} [{Measurements.get_label(yvalue)}]')
-    fig.tight_layout()
-    return fig, ax
-
-
-def scatter_individual(racks: list[Rack], xvalue: str, yvalue: str, ax: axes.Axes = None):
-    if not ax:
-        fig, ax = plt.subplots()
-    else:
-        fig = ax.get_figure()
-    for rack in racks:
-        x = [getattr(i, xvalue) for i in rack]
-        y = [getattr(i, yvalue) for i in rack]
+        if individual:
+            x = [getattr(i, xvalue) for i in rack]
+            y = [getattr(i, yvalue) for i in rack]
+        else:
+            x = [getattr(rack, xvalue)]
+            y = [getattr(rack, yvalue)]
         ax.plot(x, y, label=rack.name(), marker='o', markersize=10, linewidth=0, alpha=.7)
         ax.legend()
     ax.set_xlabel(f'{xvalue.replace("_", " ").capitalize()} [{Measurements.get_label(xvalue)}]')
@@ -92,12 +79,12 @@ def scatter_individual(racks: list[Rack], xvalue: str, yvalue: str, ax: axes.Axe
     return fig, ax
 
 
-def weight_range(rack: Rack, ax: axes.Axes = None, **kwargs):
+def _rack_weight_range(rack, ax: axes.Axes = None, **kwargs):
     if not ax:
         fig, ax = plt.subplots()
     else:
         fig = ax.get_figure()
-    cum_weights = np.cumsum([cam.weight for cam in rack])
+    cum_weights = list(accumulate([cam.weight for cam in rack]))
     mins = [cam.min for cam in rack]
     maxs = [cam.max for cam in rack]
     p = ax.fill_betweenx(cum_weights, mins, maxs, alpha=.2, label=rack.name(), **kwargs)

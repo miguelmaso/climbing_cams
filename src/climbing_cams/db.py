@@ -1,8 +1,8 @@
 import csv
 from .cam import Cam
-from .rack import Rack
+from .rack import Rack, Racks
 
-cams: Rack = []
+cams = Rack()
 
 
 def load(path: str):
@@ -27,3 +27,7 @@ def select(brand="", name="", number="", color="", range: tuple[float, float] = 
         ):
             rack.append(cam)
     return rack
+
+
+def select_many(specs: list[dict]) -> Racks:
+    return Racks(select(**spec) for spec in specs)

@@ -54,3 +54,27 @@ class Rack(list[Cam]):
             if name not in unique_names:
                 unique_names.append(name)
         return ' | '.join(unique_names)
+
+    def barh(self, ax=None, ylabel='[{number}]', numbers_inside=False):
+        from . import plots
+        return plots._rack_barh(self, ax=ax, ylabel=ylabel, numbers_inside=numbers_inside)
+
+    def weight_range(self, ax=None, **kwargs):
+        from . import plots
+        return plots._rack_weight_range(self, ax=ax, **kwargs)
+
+
+class Racks(list[Rack]):
+    def barh(self, smart_ylabels=True, numbers_inside=True):
+        from . import plots
+        return plots._racks_barh(self, smart_ylabels=smart_ylabels, numbers_inside=numbers_inside)
+
+    def scatter(self, xvalue: str, yvalue: str, ax=None, individual=False):
+        from . import plots
+        return plots._racks_scatter(self, xvalue, yvalue, ax=ax, individual=individual)
+
+    def weight_range(self, ax=None, **kwargs):
+        fig = None
+        for rack in self:
+            fig, ax = rack.weight_range(ax=ax, **kwargs)
+        return fig, ax
