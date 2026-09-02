@@ -27,15 +27,15 @@ class Measurements:
     dimless = Unit('-', 1)
 
     _measurements = {
-        'min': length,
-        'mas': length,
-        'avg': length,
-        'range': length,
-        'expansion_range': length,
-        'expansion_rate': dimless,
-        'weight': weight,
-        'strength': force,
-        'specific_weight': weight / length
+        'min': lambda cls: cls.length,
+        'max': lambda cls: cls.length,
+        'avg': lambda cls: cls.length,
+        'range': lambda cls: cls.length,
+        'expansion_range': lambda cls: cls.length,
+        'expansion_rate': lambda cls: cls.dimless,
+        'weight': lambda cls: cls.weight,
+        'strength': lambda cls: cls.force,
+        'specific_weight': lambda cls: cls.weight / cls.length,
     }
 
     @classmethod
@@ -49,5 +49,4 @@ class Measurements:
 
     @classmethod
     def get_label(cls, measurement: str):
-        unit = cls._measurements[measurement]
-        return unit.label
+        return cls._measurements[measurement](cls).label
